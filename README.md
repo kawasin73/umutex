@@ -1,5 +1,7 @@
 # umutex
 
+[![Build Status](https://github.com/kawasin73/umutex/workflows/Go/badge.svg)](https://github.com/kawasin73/umutex/actions)
+
 Upgradable RWMutex implementation for Go.
 
 `Upgrade()` is given priority to `Lock()`.
