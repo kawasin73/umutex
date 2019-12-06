@@ -49,3 +49,13 @@ func (m *UMutex) Upgrade() bool {
 	atomic.AddInt32(&m.u, -1)
 	return success
 }
+
+// Downgrade converts writer lock to reader lock.
+// Downgrade() is given priority to Lock().
+func (m *UMutex) Downgrade() {
+	// no one does not have Lock because this one have the Lock
+	atomic.StoreInt32(&m.u, 1)
+	m.rwmu.Unlock()
+	m.rwmu.RLock()
+	atomic.AddInt32(&m.u, -1)
+}
